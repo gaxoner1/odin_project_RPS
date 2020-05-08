@@ -1,38 +1,79 @@
 const selection = ["rock", "paper", "scissors"];
-var userChoice = prompt("Choose Rock, Papers or Scissors:").toLowerCase();
-var compChoice = selection[Math.floor(Math.random() * selection.length)];
+let rounds = 5;
+let compScore = 0;
+let userScore = 0;
+
+//Computer draws and returns random selection
+function opponentSelect() {
+let compSelection = selection[Math.floor(Math.random() * selection.length)];
+return compSelection;
+};
 
 
-function compare (userChoice, compChoice) {
+function gameMain () {
+  //Draw user and computer selection (rock, paper, scissors).
+  //winnerCheck();
+  compChoice = opponentSelect();
+  userChoice = prompt("Choose Rock, Papers or Scissors:").toLowerCase().trim();
+
+  //Check if slections are a match, if not matched move through each if statememt
   if (userChoice == compChoice) {
-    return "You tied";
+    return (`You chose ${userChoice} your opponent chose ${compChoice}, you tied`);
   }
   if (userChoice == "rock") {
     if (compChoice == "paper"){
-      return "Sorry, Paper Wins"
-    } else {
-      return "Congrats, Rock Wins!"
+      compScore++;
+      return (`You chose ${userChoice} your opponent chose ${compChoice}, sorry, paper Wins`);
+      } else {
+        userScore++;
+        return (`You chose ${userChoice} your opponent chose ${compChoice}, Congrats, Rock Wins!`);
     }
   }
   if (userChoice == "paper"){
     if (compChoice == "scissors") {
-      return "Sorry, Scissors Win"
-    } else {
-        return "Congrats Paper Wins!"
+      compScore++;
+      return(`You chose ${userChoice} your opponent chose ${compChoice}, sorry, Scissors Win`);
+      } else {
+        userScore++;
+        return (`You chose ${userChoice} your opponent chose ${compChoice}, congrats Paper Wins!`);
       }
     }
   if (userChoice == "scissors"){
     if (compChoice == "rock"){
-      return "Sorry, Rock Wins"
+      compScore++;
+      return (`You chose ${userChoice} your opponent chose ${compChoice}, sorry, Rock Wins`);
       } else {
-        return "Congrats, Scissors Win!"
+        userScore++;
+        return (`You chose ${userChoice} your opponent chose ${compChoice}, congrats, Scissors Win!`);
       }
     }
   }
-/*
 
-function game ()
+function winnerCheck () {
+  if (userScore < 3 && compScore < 3);
+    if (userScore == 3){
+      return (`Congrats you won!`);
+    }
+    if (compScore == 3){
+      return (`Sorry you opponent won.`);
+    } else {
+  console.log(`Your score: ${userScore}, opponent's score: ${compScore}.`);
+    }
+}
 
-console.log(compChoice);
-console.log(compare(userChoice,compChoice));
-*/
+let i = 0;
+while (i < rounds) {
+  //gameMain();
+  console.log(gameMain());
+  winnerCheck();
+  console.log(`comp:` + compScore);
+  console.log(`user:` + userScore);
+  i++;
+  console.log(`round` + i);
+  }
+//
+// console.log("You picked " + (userChoice));
+
+//display winner
+//keep track of each round (letNumWIn = 0 --> numWin ++
+//to game function not return just stroe in memory.)
